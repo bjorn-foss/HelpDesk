@@ -1,0 +1,309 @@
+body{
+overflow: hidden;
+
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	background: var(--light-color);
+	margin: 10px;
+}
+
+#content{
+    width: 100%;
+    height: 70%;
+    margin-bottom: 20%;
+    background-color: rgb(54, 111, 92);
+	position: relative;
+
+
+}
+
+
+#FAQ{margin-right: 70%;
+    position: absolute;
+    width: 22%;
+    height: 60%;
+    margin-top: 2%;
+    background-color: aquamarine;
+
+}
+
+#chat{
+	overflow-y: auto;
+    margin-right: 70%;
+    width: 50%;
+    min-height: 40%;
+    margin-left: 23%;
+    background-color: rgb(161, 30, 120);
+
+}
+
+#img{
+	margin-left: 80%;
+    width: 20%;
+    margin-top: 5%;
+    background-color: rgb(61, 75, 143);
+}
+.input{
+border: 0;
+
+}
+
+#extension{
+position: absolute;
+font-size: 15px;
+	margin-left: 82.5%;
+    width: 300px;
+	height: 100%;
+    background-color:   #7d8fff;
+	word-wrap: break-word;
+	padding: 15px;
+	overflow:auto;
+
+}
+
+#emojies{
+	height:fit-content;
+	background-color: #95a3ff;
+
+	word-wrap: break-word;
+}
+#fqa{
+	height: 200px;
+	overflow:auto;
+}
+
+#buttons{
+	margin-left: 85%;
+	position: relative;
+	font-size: 12px;
+	height: 20%;
+}
+
+#respostas_feitas{
+	
+	margin: 2%;padding:12px;
+	width: 102%;
+	height:fit-content ;
+	background-color: white;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+:root {
+	--dark-color-a: #667aff;
+	--dark-color-b: #7386ff;
+	--light-color: #e6e9ff;
+	--success-color: #5cb85c;
+	--error-color: #d9534f;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.butao {
+    margin-left: 88.5%;
+    width: fit-content;
+	padding: 5px 15px;
+	background: var(--light-color);
+	color: var(--dark-color-a);
+    position: absolute;
+	font-size: 17px;
+}
+.butao1 {
+	margin-top: 45px;
+    margin-left: 88.5%;
+    width: fit-content;
+    padding: 5px 15px;
+    background: var(--light-color);
+    color: var(--dark-color-a);
+    position: absolute;
+    font-size: 17px;
+}
+
+/* Chat Page */
+
+.chat-container {
+    position: relative;
+    width: 100%;
+	background: #fff;
+ 
+	overflow: hidden;
+    height: 600px;
+    margin-bottom: 2px;
+}
+
+#img{
+    margin-left: 81%;
+    margin-bottom: 558px;
+    width: 20%;
+    margin-top: 20px;
+    background-color: rgb(61, 75, 143);
+}
+
+.chat-header {
+	background: var(--dark-color-a);
+	color: #fff;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.chat-main {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	margin-right: 300px;
+    height: 700px;
+}
+
+.chat-sidebar {
+    
+	background: var(--dark-color-b);
+	color: #fff;
+	padding: 20px 20px 60px;
+	overflow-y: auto;
+	height: 90%;
+
+}
+
+.chat-sidebar h2 {
+	font-size: 20px;
+	background: rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.chat-sidebar h3 {
+	margin-bottom: 15px;
+}
+
+.chat-sidebar ul li {
+	padding: 10px 0;
+}
+
+.conversa{
+    height: 75%;
+    margin-left: 1%;
+}
+
+.chat-messages {
+    background-color: rgb(196, 239, 255);
+    padding: 30px;
+    height: 485px;
+    overflow-y: scroll;
+}
+
+.chat-messages .message {
+	padding: 10px;
+	margin-bottom: 15px;
+	background-color: var(--light-color);
+	border-radius: 5px;
+	overflow-wrap: break-word;
+}
+
+.chat-messages .message .meta {
+	font-size: 15px;
+	font-weight: bold;
+	color: var(--dark-color-b);
+	opacity: 0.7;
+	margin-bottom: 7px;
+}
+
+.chat-messages .message .meta span {
+	color: #777;
+}
+
+.chat-form-container {
+    width: 100%;
+    position: relative;
+	padding: 20px 30px;
+	background-color: var(--dark-color-a);
+}
+
+.chat-form-container input[type='text'] {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	flex: 1;
+}
+
+#msg {
+    margin-top:11px;
+    width: 85%;
+
+}
+/* Join Page */
+.join-container {
+	max-width: 500px;
+	margin: 80px auto;
+	color: #fff;
+}
+
+.join-header {
+	text-align: center;
+	padding: 20px;
+	background: var(--dark-color-a);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.join-main {
+	padding: 30px 40px;
+	background: var(--dark-color-b);
+}
+
+.join-main p {
+	margin-bottom: 20px;
+}
+
+.join-main .form-control {
+	margin-bottom: 20px;
+}
+
+.join-main label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.join-main input[type='text'] {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+}
+
+.join-main select {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+}
+
+.join-main .btn {
+	margin-top: 20px;
+	width: 100%;
+}
+
+
+
+
+
+
+
+
+
+

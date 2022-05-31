@@ -1,0 +1,31 @@
+body{
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#footer{
+    position: relative;
+    height:13%;
+    width:100%;
+    background-color: cornflowerblue;
+    display: inline-block;
+}
+
+#facebook_logo{
+    float: left;
+    padding-left: 0.5%;
+    width: 4.5%;
+}
+
+#youtube_logo{
+    float: left;
+    padding-left: 0.5%;
+    padding-top: 0.7%;
+    width: 5%;
+}
+
+.content{
+    margin-top: 0.9%;
+}

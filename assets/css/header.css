@@ -1,0 +1,47 @@
+/*--------------------------Google Fonts--------------------------*/
+/*font-family: 'IBM Plex Mono', monospace;*/
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap');
+
+body{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+#logo{
+    height:100%;
+    width: 100%;
+    position:relative;
+}
+
+nav{
+    position: fixed;
+    background-color: cornflowerblue;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+li a {
+    text-decoration: none;
+    font-family: IBM Plex Mono;
+    weight: 500;
+    font-size: 115%;
+}
+
+.navbar-nav .active {
+    font-family: IBM Plex Mono;
+    font-style: normal;
+    weight: 500;
+    color: aquamarine;
+}
+
+.navbar-nav .active li a:hover {
+    font-family: IBM Plex Mono;
+    font-style: italic;
+    weight: 500;
+    color: aquamarine;
+}

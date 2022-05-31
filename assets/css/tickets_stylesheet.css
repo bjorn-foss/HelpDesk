@@ -1,0 +1,53 @@
+body{
+    position:absolute;
+    margin: 0 auto;
+    height:100%;
+    width:100%;
+}
+
+#content{
+    /*background: linear-gradient(90deg, rgba(94,94,233,1) 0%, rgba(146,184,235,1) 40%, rgba(235,241,255,1) 100%);*/
+    background: linear-gradient(180deg, rgba(0,99,162,0.7262255243894433) 0%, rgba(173,255,139,0.6786064767703957) 64%, rgba(248,255,153,0.6449930313922444) 100%);
+    padding-bottom: 1%;
+    padding-top: 1%;
+}
+
+.grid-container {
+    position: relative;
+    height: 73%;
+    display: flex;
+    transition: 1s ease;
+}
+
+#form_tickets {
+    margin: auto;
+    position:relative;
+    width: 50%;
+    background-color: lightblue;
+}
+
+form{
+    padding: 1.5%;
+    display: grid;
+}
+
+.extra_padding{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.form-label{
+    font-size: small;
+}
+
+h1{
+     font-size: 70%;
+}
+
+p{
+    font-size: 95%;
+}
+
+.centralize_text{
+    text-align: center;
+}

@@ -1,0 +1,40 @@
+
+body{
+    position:absolute;
+    height:100%;
+    width:100%;
+    background: linear-gradient(180deg, rgba(0,99,162,0.7262255243894433) 0%, rgba(173,255,139,0.6786064767703957) 64%, rgba(248,255,153,0.6449930313922444) 100%);
+}
+
+
+#homepage_img{
+    height:60%;
+    width:30%;
+    position:relative;
+    float: left;
+    margin: 2%;
+}
+
+#homepage_txt{
+    text-align: justify;
+    font-size: 25px;
+}
+
+.grid-container {
+    position: relative;
+    height: 73%;
+    display: flex;
+    transition: 1s ease;
+}
+.main-content{
+    height:95%;
+
+}
+#text{
+    margin-left: 30%;
+
+    height:600px;
+    margin-bottom: 5%;
+
+
+}

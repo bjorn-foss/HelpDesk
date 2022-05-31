@@ -1,0 +1,56 @@
+body{
+    position:absolute;
+    margin: 0 auto;
+    height:100%;
+    width:100%;
+    overflow: hidden;
+}
+
+#support{
+    position:absolute;
+    margin-top: 1%;
+    margin-left: 22%;
+    margin-right: 22%;
+    height: fit-content;
+    background-color: rgb(122, 238, 213);
+    width: 50%;
+    border-radius: 50px;
+    word-wrap: break-word;
+    padding: 20px;
+
+}
+#suport_form{
+    margin-top: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#img1{
+    position:absolute;
+    margin-top: 2%;
+    width: 18%;
+   
+    margin-left: 2% ;
+    margin-right: 60%;
+}
+
+#img2{
+    position:relative;
+    margin-top: 2%;
+    width: 18%;
+   margin-bottom: 13%;
+    margin-right: 2% ;
+    margin-left: 80%;
+}
+
+.suporte_info{
+    text-align: center;
+    margin-right: 2% ;
+    margin-left: 2% ;
+    height: fit-content;
+}
+
+.sup_in{
+    width: 80%;
+    
+}

@@ -1,0 +1,48 @@
+body{
+    position:absolute;
+    height:100%;
+    width:100%;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(0,99,162,0.7262255243894433) 0%, rgba(173,255,139,0.6786064767703957) 64%, rgba(248,255,153,0.6449930313922444) 100%);
+ 
+}
+
+
+
+#form_login {
+    margin: auto;
+    position:relative;
+    width: 50%;
+    border-radius: 30px;
+    padding: 30px;
+    background-color: lightblue;
+    margin-top: 111px;
+    margin-bottom: 111px;
+   
+}
+
+form{
+    padding: 1.5%;
+    display: grid;
+}
+
+.extra_padding{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.form-label{
+    font-size: small;
+}
+
+h1{
+    font-size: 70%;
+}
+
+p{
+    font-size: 95%;
+}
+
+.centralize_text{
+    text-align: center;
+}
