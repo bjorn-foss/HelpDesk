@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp</title>
+    <link rel="stylesheet" type="text/css" href="css/signup.css" media="screen" />  <!--css da página-->
+
+</head>
+<body>
+    <!--Header section-->
+    <%- include('../partials/cabecalho'); %>
+
+    
+    
+        <div class="content"> 
+            <div id="form_login">
+                <form> 
+                <div id="space"> 
+
+                    <h1 id="formtitle" class="centralize_text"> Sign Up </h1>  
+                    <label class="label">First Name : </label>   
+                    <input class="input" type="text" placeholder="Enter First Name" name="fname" required>  
+                    <label class="label">E-Mail : </label>   
+                    <input class="input" type="text" placeholder="Enter E-Mail" name="email" required>  
+                    <label class="label">Password : </label>   
+                    <input  class="input"  type="password" placeholder="Enter Password" name="password" required>  
+                    <label class="label">Password Verification : </label>   
+                    <input  class="input"type="password" placeholder="Enter Password Verification" name="pswverify" required>  
+
+                </div>
+                <button type="submit" class="btn btn-primary submit-align" >sign me up</button>   
+                <div class="remember">
+                 Remember me   <input type="checkbox" checked="checked">  
+                </div>
+                <button type="submit" class="btn btn-primary submit-align">cancel</button>  
+                <div class="remember">
+                Forgot <a href="#"> password? </a> 
+            </div>  
+
+            </form>  
+         </div> 
+        </div>  
+       
+
+        <%- include('../partials/rodape'); %>
+    <!--Footer Section-->
+  
+
+</body>
+</html>

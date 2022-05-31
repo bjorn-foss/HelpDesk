@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<link rel="stylesheet" type="text/css" href="css/homepage_stylesheet.css" media="screen" />  <!--css da página-->
+    <link rel="stylesheet" type="text/css" href="/css/support_stylesheet.css" media="screen" />  <!--css da página-->
+    <base href="/">
+</head>
+<body>
+    <%- include('../partials/cabecalho'); %>
+
+
+    <img src="../img/helpdesk.png" id="img1">
+
+    <div id="support">
+        <h2 class="suporte_info">Suporte</h2>
+            
+        <div class="suporte_info">
+            <p><b>This is the page before our chat room. We have some rules regarding the interaction of users in the chatroom, which you acccept by continuing forward. These rules are as follow: </b></p>
+            <ol>
+                <li> No spamming.</li>
+                <li> No personal attacks or harassment.</li>
+                <li> No use of the chat for other means than seek support regarding out products and services</li>
+                <li> English and Portuguese are the languages accepted.</li>
+            </ol>
+            <p><b>Should you break any rules, punitive action will be taken depending on the severity of your actions.</b></p>
+
+            <form id="suport_form " action="/chat" method="get"> <!--redirecionar pro caht que ainda falta fazer-->
+                <div style="width: 50%; background-color: darkblue; color: ghostwhite; margin: auto ;"><%=number_agents%> agents online</div>
+
+                Categoria do Support: <select name="faq_area" id="chat_room">
+                    <%  for(let i=0; i < cat.length;i++ ){ %>
+                            <option value="<%=cat[i].category_name%> "><%=cat[i].category_name%></option>
+                    <% }%>
+                </select>
+                <br><br><input type="submit" value="Enter Chatroom">
+            </form>
+    
+        </div>
+
+    </div>
+
+    <img src="../img/helpdesk.png" id="img2">
+
+    <%- include('../partials/rodape'); %>
+</body>
+</html>

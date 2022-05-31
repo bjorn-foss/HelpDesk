@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CHAT</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/chat_stylesheet.css" media="screen" />  <!--css da página-->
+    <base href="/">
+</head>
+<body>
+<script src="/socket.io/socket.io.js"></script>
+
+
+
+<% if(!autorized) { %>
+    <%- include('../partials/cabecalho'); %>
+<% } %>
+<% if(autorized) { %>
+    <%- include('../partials/cabecalho_ag'); %>
+<% } %>
+
+<div class="chat-container">
+
+    <main class="chat-main">
+
+
+        <div class="chat-sidebar">
+            <% if(!autorized) { %>  <!--right sidebar for users with faq-->
+            <h3><i class="fas fa-users"></i> FAQ</h3>
+            <% for(let i=0; i < faq.length; i++ ) { %> <!--percorrer categorias-->
+            <h5><em><%= faq[i]. category_name%></em></h5>
+
+            <% for(let j=0; j < faq[i].question_answer.length; j++ ) { %>
+                <b><%= faq[i].question_answer[j].question%></b><br>
+                <%= faq[i].question_answer[j].answer%> <br><br>
+            <% } %>
+            <% } %>
+            <% } %>
+        </div>
+
+
+        <div class="conversa">
+
+            <div class="chat-messages" id="messagens"></div> <!--Chat Area-->
+
+            <div class="chat-form-container"> <!--Message Input Socket-->
+                <form id="form">
+                    <input id="msg" type="text" placeholder="Enter Message"  autocomplete="off"/>
+                    <button  class="butao" >Send </button>
+                </form>
+            </div>
+
+        </div>
+
+
+        <div id="extension">
+
+            <%if(autorized){%>  <!-- Ticket Creation -->
+            <h4><i class="fas fa-users"></i>Auto-Answers</h4>
+            <div id="fqa">
+                <% console.log(faq) %>
+                <% for(let i=0; i< faq.length; i++ ) { %> <!--percorrer categorias-->
+
+                <% for(let j=0; j < faq[i].question_answer.length; j++ ) { %>
+                    <% var str=i*10+j %>
+                    <% console.log(str) %>
+                    <button onclick="copiarTexto(<%=str%>)" id="<%=str%>" value="<%= faq[i].question_answer[j].answer%>">  <%= faq[i].question_answer[j].answer%> </button>
+                <% } %>
+                <% } %>
+            </div>
+            <% } %>
+
+            <div id="tickets">
+                <b>Tickets</b> <!--Ticket Creation-->
+                <form action="/chat/Tickets" method="post">
+                    <input type="email" id="input" class="input" name="email" placeholder="email" required><br>
+                    <select name="categoria" id="FAQCategory" aria-label="Select the issue category">
+                        <%  for(let i=0; i < faq.length ; i++ ){ %>
+                            <option value= <%= faq[i]._doc._id %> > <%= faq[i]._doc.category_name%></option>
+                        <%} %>
+                        <option value="0">Non included in FAQ</option>
+                    </select><br>
+                    <input type="text" id="input" class="input" name="assunto" placeholder="Assunto" required><br>
+                    <textarea cols="30" rows="3" id="input"  class="input" name="mensagem" placeholder="Mensagem" required> </textarea><br>
+                    <input type="submit" value=&#10133>
+                </form>
+            </div>
+
+            <div id="emojies"> <!--Emojis-->
+                <h4>Emojis</h4>
+                <% for(let j=128512; j < 128593 ;j++ ){ %>
+                <input type="submit" onclick="copiarTexto(<%=j%>)" id="<%=j%>" value="&#<%=j%>" >
+                <% } %>
+            </div><br>
+
+        </div>
+    </main>
+</div>
+
+</div>
+
+<%- include('../partials/rodape'); %>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<script>
+
+
+    function copiarTexto(id) {
+        console.log(id)
+        console.log(document.getElementById(id).value);
+        let textoCopiado = document.getElementById(id).value;
+        document.getElementById("msg").value+= textoCopiado;
+    }
+
+
+
+    const socket = io();
+
+    //const joinRoomButton=document.getElementById("room-button");
+    const messageinput =document.getElementById('msg');
+    //const roominput =document.getElementById("room-input");
+    const form =document.getElementById("form");
+
+    socket.on('connect',()=>{
+
+        displaymessage('someone connected:  ' + socket.id);
+    })
+
+    form.addEventListener("submit", e=>{//// ve se os buroes foram clicados
+        e.preventDefault()
+
+        const message =messageinput.value
+        //const room= roominput.value
+
+        if(message==="")return;
+
+        displaymessage(message);
+        // socket.emit("message", message, room)
+        socket.emit("message", message)
+
+        messageinput.value="";
+    })
+
+
+    socket.on("joi-room", (data)=>{/////mosta a mensagem de quando se jinta num room
+        displaymessage(data)
+    })
+
+
+    socket.on("message-recive", (data)=>{
+        console.log(data);
+        var div=document.createElement("div");
+        var msg=document.getElementById("messagens");
+        var conteudo = document.createTextNode(data);
+
+        div.append(conteudo);
+        var divid=document.getElementById("messagens");
+        divid.append(div)
+
+    })
+
+
+    function displaymessage(data){
+        const div =document.createElement("div");
+        div.textContent=data
+        document.getElementById("messagens").append(div)
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/historical_tickets_stylesheet.css" />
+    <base href="/">
+</head>
+<body>
+    <%- include('../partials/cabecalho_ag'); %>
+
+    <div id="content">
+
+        
+
+        <div class="content_child">
+           
+            <h4 id="tickets_info"><%= cat %> - <%=ticket.subject %> </h4>
+            <h6 id="tickets_id">id: <em><%=ticket._id %></em> | e-mail user: <em><%=ticket.email_guest %></em> </h6>
+            <br>
+            <div id="historic">
+
+                <%  for(let i=0; i < ticket.entries.length; i++ ){ %>
+                    <ul>
+                        <li><%= ticket.entries[i].sender %> - <%= ticket.entries[i].date %></li>
+                        <ul>
+                            <li><b><%= ticket.entries[i].body %></b></li>
+                        </ul>
+                    </ul>
+
+                    <%  if( i ===  ticket.entries.length - 1  && ticket.entries[i].sender === "agent" ){ %>
+                        <% var can_close = true %>
+                    <%  } %>
+                    <% } %>
+            </div>
+            <br>
+            <form method="post">
+                <input type="hidden" name="ticket_id" value= <%=ticket._id %>>
+
+                <%  if (ticket.closed === false){ %>
+                <input  type="text" name="reply" class="text" required>
+                <input type="submit" value="Send" formaction="/agent/tickets/send" class="button">
+                <%  } %>
+
+                <%  if (ticket.closed === false && can_close === true){ %>
+                    <input type="submit" value="Close" formaction="/agent/tickets/close" class="button">
+                <%  } %>
+
+                <%  if (ticket.closed === true){ %>
+                    <input type="submit" value="Reopen" formaction="/agent/tickets/reopen" class="button">
+                <%  } %>
+            </form>
+
+            <a href="/agent/tickets"><b>Return to Tickets</b></a> <br>
+        </div>
+
+
+
+        <%  if (ticket.closed === true){ %>
+            <div id="sidebar">
+                <h1>FAQ-extension</h1>
+                <form action="/agent/tickets/extendFAQ" method="post" >
+                    <select name="category_id" id=" category">
+                        <%  for(let i=0; i < allcats_names.length; i++ ){ %>
+                            <option value=<%=allcats_names[i]._id %>><%=allcats_names[i].category_name %></option>
+                        <% } %>
+                    </select><br>
+
+                    <textarea name="question" id="pergunta" cols="33" rows="5"placeholder="Pergunta"></textarea><br>
+                    <textarea name="answer" id="resposta" cols="33" rows="5" placeholder="Reposta"></textarea><br>
+                    <button>Extend</button>
+                </form>
+            </div>
+        <% } %>
+       
+
+       
+
+        
+    </div>
+
+
+</body>
+</html>

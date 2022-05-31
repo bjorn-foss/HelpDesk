@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage - HelpDesk</title>
+    <link rel="stylesheet" type="text/css" href="css/homepage_stylesheet.css" media="screen" />  <!--css da página-->
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css" media="screen" />  <!--css da sidebar-->
+</head>
+<body>
+
+    <!--Header section-->
+    <%- include('../partials/cabecalho'); %>
+
+
+    <!--Content section-->
+    <div class="grid-container">
+
+            <div class="main-content">
+                <img src="img/meeting.jpg" id="homepage_img" alt="">
+                <h1>Our Mission </h1>
+                <div id="text" >
+                <embed src="/txt/LoremIpsum.txt" width="80%" height="100%">
+                </div>
+            </div>
+
+
+            <!--
+                    <div class="sidebar">
+                        <button id ="visibility_button" ><</button>
+                        <input type="hidden" id="opened" name="status" valuue>
+
+                        <div class="sidebar_contents">
+                            <p>A simple paragraph that is placed on the sidebar;</p>
+                            <a href="/News">News</a>
+                            <a href="/FAQ">FAQ</a>
+                            <a href="/Support">Support</a>
+                            <a href="/Tickets">Tickets</a>
+                        </div>
+
+                    </div>
+                    -->
+        </div>
+
+    <!--Footer Section-->
+    <%- include('../partials/rodape'); %>
+
+    <!--Javascript -->
+
+
+</body>
+</html>

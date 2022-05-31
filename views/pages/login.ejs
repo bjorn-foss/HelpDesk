@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LogIn</title>
+    <link rel="stylesheet" type="text/css" href="css/login.css" media="screen" />  <!--css da página-->
+
+</head>
+<body>
+    <!--Header section-->
+    <%- include('../partials/cabecalho'); %>
+
+    <div class="content">
+        <div id="form_login">
+            <form action="/logIn" method="post">
+                <h1 id="formtitle" class="centralize_text">Log In</h1>
+
+                <div class="mb-3">
+                    <label for="user_input">User</label>
+                    <input type="text" class="form-control" id="user_input" name="username" required>
+                  </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary submit-align">Submit</button>
+
+            </form>
+        </div>
+    </div>
+
+    <!--Footer Section-->
+    <%- include('../partials/rodape'); %>
+
+</body>
+</html>

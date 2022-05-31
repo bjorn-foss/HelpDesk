@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/faq_ag_stylesheet.css" media="screen" />  <!--css da página-->
+    <link rel="stylesheet" type="text/css" href="/css/header.css" media="screen" />
+    <base href="/">
+</head>
+
+<body>
+
+
+<div id="content">
+
+    <!--Header section-->
+    <% if(!autenticado) { %>
+        <%- include('../partials/cabecalho'); %>
+    <% } %>
+    <% if(autenticado) { %>
+        <%- include('../partials/cabecalho_ag'); %>
+    <% } %>
+
+    <% if(autenticado && num !== 0) { %>
+        <div id="alert" style="background-color: #06357a ">
+            <a href="/agent/tickets"><p style="color: ghostwhite"><b>You have <%= num %> tickets still to solve.</b></p></a>
+        </div>
+    <% } %>
+
+
+    <div id="fqa">
+
+        <% if(autenticado) { %>
+            <button id="categoryAddButton" onclick="formAddCategory()">Add Category</button>
+            <div id="formAddCategory"></div>
+        <% } %>
+
+        <%  for(let i=0; i < info.length;i++ ){ %>
+                <br><br><h2><%= info[i].category_name %></h2>
+
+            <% for(let j=0; j < info[i].question_answer.length; j++ ){ %>
+                <ul>
+                    <div>
+                        <% if(info[i].question_answer[j].pinned === true) {%>
+                            <img src="/img/pin.jpg" alt="pinned" style="width:1.5%; float:left; margin-right: 0.5%;">
+
+
+                            <div>
+                                <li><b><%=info[i].question_answer[j].question %></b></li>
+                                <li><%=info[i].question_answer[j].answer%></li>
+                                <% var id = i + "_" + j%>
+                                <div id=<%=id%>></div>
+                            </div>
+
+
+
+                            <!--Form for the edit/delete of the Question-Answer-->
+                            <% if(autenticado) { %>
+
+
+                                <%var edit_id = "edit" + i + "_" + j %>
+                                <form id="manipulateQA">
+                                    <input type="hidden" name="category_id" value=<%= info[i]._id%>>
+                                    <input type="hidden" name="qa_index" value=<%= j %>>
+                                    <button onclick="editQA( <%= i %>, <%= j %> )" id=<%=edit_id%>>&#9999</button>
+                                    <input type="submit" formaction="/agent/faq/deleteQA" formmethod="post" value=&#128465>
+                                    <input type="submit" formaction="/agent/faq/pin" formmethod="post" value=&#128204>
+                                </form>
+                            <% } %>
+
+                        <% } %>
+                    </div>
+                </ul>
+            <% } %>
+
+                <% for(let j=0; j < info[i].question_answer.length; j++ ){ %>
+                    <ul>
+                        <div>
+                            <% if(info[i].question_answer[j].pinned === false) {%>
+                                <div>
+                                    <li><b><%=info[i].question_answer[j].question %></b></li>
+                                    <li><%=info[i].question_answer[j].answer%></li>
+                                    <% var id = i + "_" + j%>
+                                    <div id=<%=id%>></div>
+                                </div>
+
+
+
+                                <!--Form for the edit/delete of the Question-Answer-->
+                                <% if(autenticado) { %>
+
+
+                                    <%var edit_id = "edit" + i + "_" + j %>
+                                    <form id="manipulateQA">
+                                        <input type="hidden" name="category_id" value=<%= info[i]._id%>>
+                                        <input type="hidden" name="qa_index" value=<%= j %>>
+                                        <button onclick="editQA( <%= i %>, <%= j %> )" id=<%=edit_id%>>&#9999</button>
+                                        <input type="submit" formaction="/agent/faq/deleteQA" formmethod="post" value=&#128465>
+                                        <input type="submit" formaction="/agent/faq/pin" formmethod="post" value=&#128204>
+                                    </form>
+                                <% } %>
+                            <% } %>
+
+                        </div>
+                    </ul>
+                <% } %>
+
+
+            <% if(autenticado) { %>
+
+               <div id="formAddedQA">
+                   <!--Form for the add of the Question-Answer-->
+                   <label for="formAddQuestionAnswer" style="color: #06357a;">Add Question-Answer</label>
+                    <form method="post" id="formAddQuestionAnswer">
+                        <input type="hidden" name="category_id" value=<%=info[i]._id%>>
+                        <input type="text" name="question" size="50" placeholder="Question" required>
+                        <input type="text" name="answer" size="50" placeholder="Answer" required>
+                        <input type="submit" value=&#10133 formaction="/agent/faq/addQA">
+                    </form>
+                </div>
+
+
+                <br><form action="/agent/faq/deleteCategory" method="post" style="display:inline-block;color: #06357a;">
+                    <input type="hidden" value=<%=info[i]._id%> name="category_id">
+                    Delete Category: <input type="submit" value=&#128465>
+                </form>
+            <% } %>
+
+        <% } %>
+    </div>
+        <%- include('../partials/rodape'); %>
+</div>
+
+
+<script>
+    function formAddCategory(){
+        <!--Form for the Add of a Category-->
+        document.getElementById('categoryAddButton').style.visibility = 'hidden';  // hide the initial button
+
+        var form = document.createElement("form");
+        form.setAttribute('method',"post");
+        form.setAttribute('action',"/agent/faq/addCategory");
+
+        var catName = document.createElement("input"); //input element, text
+        catName.setAttribute('type',"text");
+        catName.setAttribute('name',"category_name");
+
+        var submitB = document.createElement("input"); //input element, Submit button
+        submitB.setAttribute('type',"submit");
+        submitB.setAttribute('value',"Add");
+
+        form.appendChild(catName);
+        form.appendChild(submitB);
+
+        document.getElementById("formAddCategory").appendChild(form);
+    }
+    function editQA(i, j){
+        var zone = i + "_" + j;
+        var button_id = "edit" + zone;
+        document.getElementById(button_id).disabled = true;
+
+        var form = document.createElement("form");
+        form.setAttribute('method',"post");
+        form.setAttribute('action',"/agent/faq/editQA");
+
+        var cat_id = document.createElement("input"); //input element, text
+        cat_id.setAttribute('type',"hidden");
+        cat_id.setAttribute('name',"category_index");
+        cat_id.setAttribute('value', i);
+
+        var qa_index = document.createElement("input"); //input element, text
+        qa_index.setAttribute('type',"hidden");
+        qa_index.setAttribute('name',"qa_index");
+        qa_index.setAttribute('value', j);
+
+        var q = document.createElement("input"); //input element, text
+        q.setAttribute('type',"text");
+        q.setAttribute('name',"new_question");
+        q.setAttribute('placeholder',"Rewritten question");
+        q.setAttribute('size',50);
+
+        var a = document.createElement("input"); //input element, text
+        a.setAttribute('type',"text");
+        a.setAttribute('name',"new_answer");
+        a.setAttribute('placeholder',"Rewritten answer");
+        a.setAttribute('size',50);
+
+        var submitB = document.createElement("input"); //input element, Submit button
+        submitB.setAttribute('type',"submit");
+        submitB.setAttribute('value',"Submit");
+
+        form.appendChild(cat_id);
+        form.appendChild(qa_index);
+        form.appendChild(q);
+        form.appendChild(a);
+        form.appendChild(submitB);
+
+        document.getElementById(zone).appendChild(form);
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Open & Closed tickets</title>
+    <link rel="stylesheet" type="text/css" href="/css/open_close_tickets.css" media="screen" />
+    <base href="/"> 
+</head>
+<body>
+    
+
+    <!--Header section-->
+    <%- include('../partials/cabecalho_ag'); %>
+
+
+</div>
+
+<div id="content">
+
+    <div  id="Open_tickets">
+        <h3>Tickets abertos</h3>
+
+
+        <%  for(let i=0; i < tickets.length;i++ ){ %> <!--loop categories-->
+
+            <%  for(let j=0; j < tickets[i].length;j++ ){ %> <!--loop tickets-->
+
+                <% if (tickets[i][j]._doc.closed === false){  %>
+
+                    <div id="tickets">
+                        <label for="form"><b>Subject: </b><%= tickets[i][j]._doc.subject %></label>
+                        <form id="form" action="/agent/tickets" method="post">
+                            <input type="submit" name="ticket_id" value="<%= tickets[i][j]._doc._id %>">
+                        </form>
+                    </div>
+                    <br>
+                <% }%>
+
+            <% }%>
+        <% }%>
+    </div>
+
+    <div  id="barra"></div>
+
+
+    <div  id="Closed_tickets">
+        <h3>Tickets Fechados</h3>
+
+
+        <%  for(let i=0; i < tickets.length;i++ ){ %> <!--loop categories-->
+            <%  for(let j=0; j < tickets[i].length;j++ ){ %> <!--loop tickets-->
+                <% if (tickets[i][j]._doc.closed === true){  %>
+
+                    <div id="tickets">
+                        <label for="form"><b>Subject: </b><%= tickets[i][j]._doc.subject %></label>
+                        <form id="form" action="/agent/tickets" method="post">
+                            <input type="submit" name="ticket_id" value="<%= tickets[i][j]._doc._id %>">
+                        </form>
+                    </div>
+                <% }%>
+
+            <% }%>
+        <% }%>
+    </div>
+
+    <%- include('../partials/rodape'); %>
+
+</div>
+
+
+</body>
+</html>

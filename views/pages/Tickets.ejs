@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/tickets_stylesheet.css" media="screen" />  <!--css da página-->
+    <title>Tickets</title>
+</head>
+<body>
+   
+    <%- include('../partials/cabecalho'); %>
+
+        <!--<img src="../img/helpdesk.png" id="img">-->
+
+    <div id="content">
+        <div id="form_tickets">
+            <form action="/Tickets" method="post">
+                <h1 id="formtitle" class="centralize_text"> Tickets </h1>
+                <p class="centralize_text extra_padding"><b>Please tell us about your issue: fill in this form and we'll contact you through e-mail afterwards.
+                All data sent is confidental and won't be shared with Third-Parties.</b></p>
+
+                <div class="extra_padding">
+                    <div class="mb-1" method="post" id="email">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="name@example.com" required>
+                    </div>
+
+                    <label for="FAQCategory" class="form-label">Category</label>
+                    <select class="mb-1 form-select" name="categoria" id="FAQCategory" aria-label="Select the issue category">
+                        <%  for(let i=0; i < categories.length ; i++ ){ %>
+                            <option value= <%= categories[i]._doc._id %> > <%= categories[i]._doc.category_name%></option>
+                            <!--This will be linked to the DB and it needs to get the existing FAQ Categories-->
+                            <%} %>
+                            <option value="0">Non included in FAQ</option>
+                    </select>
+
+                    <div class="mb-1" method="post" id="sujectOfMessage">
+                        <label for="exampleInputPassword1" class="form-label">Subject</label>
+                        <input type="input" name="assunto" class="form-control" id="sujectOfMessage" required>
+                    </div>
+
+                    <div class="mb-1">
+                        <label for="bodyOfMessage" class="form-label">Message</label>
+                        <textarea class="form-control" name="mensagem" id="bodyOfMessage" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-align">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <%- include('../partials/rodape'); %>
+
+</body>
+</html>
